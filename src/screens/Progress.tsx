@@ -5,19 +5,20 @@ import styles from '../styles/ProgressStyles';
 import axios from 'axios';
 
 type WeightRecord = {
-  date: string;
+  _id?: string;
+  createdAt?: string;
+  date?: string;
   weight: number;
 };
 
 type User = {
   fullName: string;
   weight: number;
+  height: number;
   targetWeight: number;
   bmi: number;
   bmiCategory: string;
-  weightRecords: WeightRecord[];
 };
-
 
 const Progress: React.FC = () => {
   const [weightRecords, setWeightRecords] = useState<WeightRecord[]>([]);
@@ -29,79 +30,81 @@ const Progress: React.FC = () => {
 
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
+  // Cargar datos del usuario y progreso
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchData = async () => {
       try {
         const token = await AsyncStorage.getItem('token');
-        const response = await axios.get(`${apiUrl}/auth/user`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        if (!token) return;
 
-        const userData: User = response.data;
-        setUser(userData);
-        setWeightRecords(userData.weightRecords || []);
+        // Datos del usuario
+        const userRes = await axios.get(`${apiUrl}/auth/user`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUser(userRes.data);
+
+        // Historial de progreso
+        const progressRes = await axios.get(`${apiUrl}/progress`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setWeightRecords(progressRes.data || []);
+
       } catch (err) {
-        console.error('Error al obtener los datos del usuario', err);
-        Alert.alert('Error', 'No se pudieron cargar los datos del usuario.');
+        console.error('Error al cargar datos:', err);
+        Alert.alert('Error', 'No se pudieron cargar los datos.');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUserData();
+    fetchData();
   }, []);
 
-  const handleSubmit = () => {
+  // Registrar nuevo peso en el backend
+  const handleSubmit = async () => {
     const weightValue = parseFloat(newWeight);
     if (isNaN(weightValue) || weightValue <= 0) {
       setError('Por favor ingresa un peso válido');
       return;
     }
 
-    const today = new Date().toISOString();
-    const newRecord: WeightRecord = { date: today, weight: weightValue };
-    const updatedRecords = [...weightRecords, newRecord];
-    setWeightRecords(updatedRecords);
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (!token || !user) return;
 
-    if (user) {
-      const heightInMeters = 1.7;
-      const bmi = weightValue / (heightInMeters * heightInMeters);
-      let category = '';
-      if (bmi < 18.5) category = 'Bajo peso';
-       else if (bmi < 25) category = 'Normal';
-      else if (bmi < 25) return 'Normal';
-      else if (bmi < 30) return 'Sobrepeso';
-      else if (bmi < 35) return 'Obesidad I';
-      else if (bmi < 40) return 'Obesidad II';
-      else category = 'Obesidad III';
+      const res = await axios.post(
+        `${apiUrl}/progress`,
+        {
+          weight: weightValue,
+          height: user.height,
+          targetWeight: user.targetWeight,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-      setUser({
-        ...user,
-        weight: weightValue,
-        bmi,
-        bmiCategory: category,
-        weightRecords: updatedRecords,
-      });
+      setUser(res.data.user);
+      setWeightRecords((prev) => [res.data.progress, ...prev]);
+
+      setNewWeight('');
+      setShowForm(false);
+      setError('');
+
+      Alert.alert('Éxito', res.data.message || 'Progreso registrado');
+    } catch (err) {
+      console.error('Error al guardar progreso:', err);
+      Alert.alert('Error', 'No se pudo guardar el progreso.');
     }
-
-    setNewWeight('');
-    setShowForm(false);
-    setError('');
   };
 
-  if (loading) return <Text style={styles.header}>Cargando datos...</Text>;
-  if (!user) return <Text style={styles.header}>No hay usuario autenticado.</Text>;
-
-  const sortedRecords = [...weightRecords].sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-  );
-
   const calculateProgress = () => {
-    if (sortedRecords.length === 0) return 0;
-    const initial = sortedRecords[0].weight;
-    const current = sortedRecords[sortedRecords.length - 1].weight;
+    if (weightRecords.length === 0 || !user) return 0;
+
+    const sorted = [...weightRecords].sort(
+      (a, b) => new Date(a.createdAt || a.date || '').getTime() - new Date(b.createdAt || b.date || '').getTime()
+    );
+
+    const initial = sorted[0]?.weight;
+    const current = sorted[sorted.length - 1]?.weight;
     const goal = user.targetWeight;
 
     if (goal < initial)
@@ -110,19 +113,29 @@ const Progress: React.FC = () => {
         : current >= initial
         ? 0
         : ((initial - current) / (initial - goal)) * 100;
+
     if (goal > initial)
       return current >= goal
         ? 100
         : current <= initial
         ? 0
         : ((current - initial) / (goal - initial)) * 100;
+
     return 100;
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return '';
     const date = new Date(dateString);
     return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
   };
+
+  if (loading) return <Text style={styles.header}>Cargando datos...</Text>;
+  if (!user) return <Text style={styles.header}>No hay usuario autenticado.</Text>;
+
+  const sortedRecords = [...weightRecords].sort(
+    (a, b) => new Date(a.createdAt || a.date || '').getTime() - new Date(b.createdAt || b.date || '').getTime()
+  );
 
   return (
     <ScrollView style={styles.container}>
@@ -176,8 +189,8 @@ const Progress: React.FC = () => {
               const diff = prev ? (record.weight - prev.weight).toFixed(1) : null;
               const isLoss = diff && parseFloat(diff) < 0;
               return (
-                <View key={record.date + i} style={styles.recordRow}>
-                  <Text>{formatDate(record.date)}</Text>
+                <View key={(record.createdAt || record.date || '') + i} style={styles.recordRow}>
+                  <Text>{formatDate(record.createdAt || record.date)}</Text>
                   <Text>{record.weight} kg</Text>
                   {diff && (
                     <Text style={{ color: isLoss ? 'green' : 'red' }}>
@@ -192,11 +205,13 @@ const Progress: React.FC = () => {
       </View>
 
       <View style={styles.card}>
-            <Image
-              source={{ uri: 'https://cdn-icons-png.flaticon.com/128/18265/18265431.png' }} 
-                style={styles.icon} />
-      <View style={[styles.section, { marginTop: 24 }]}>
-        <Text style={styles.sectionTitle}>Estadísticas</Text></View>
+        <Image
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/128/18265/18265431.png' }}
+          style={styles.icon}
+        />
+        <View style={[styles.section, { marginTop: 24 }]}>
+          <Text style={styles.sectionTitle}>Estadísticas</Text>
+        </View>
         <View style={styles.row}>
           <Text style={styles.mealCalories}>Peso inicial:</Text>
           <Text style={styles.mealName}>{sortedRecords[0]?.weight ?? user.weight} kg</Text>

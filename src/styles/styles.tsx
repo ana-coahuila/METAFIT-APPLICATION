@@ -75,4 +75,12 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     textDecorationLine: 'underline',
   },
+  pickerContainer: {
+  borderWidth: 1,
+  borderColor: '#ccc',
+  borderRadius: 8,
+  marginVertical: 8,
+  overflow: 'hidden',
+}
+
 });

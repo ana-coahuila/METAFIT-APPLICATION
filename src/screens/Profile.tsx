@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View,Text,TextInput,TouchableOpacity,ScrollView,Alert,ActivityIndicator} from 'react-native';
+import {View,Text,TextInput,TouchableOpacity,ScrollView,Alert,ActivityIndicator, Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { User as IconUser, Settings, LogOut } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -133,10 +133,10 @@ const Profile: React.FC = () => {
         
         <View style={styles.header}>
           <Text style={styles.title}>Tu Perfil</Text>
-          <View style={styles.iconContainer}>
-            <IconUser size={24} color="#1F2937" />
+            <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/12266/12266251.png' }} 
+                        style={styles.iconContainer} />
           </View>
-        </View>
+        
 
         <View style={styles.card}>
           <View style={styles.profileRow}>
@@ -155,7 +155,8 @@ const Profile: React.FC = () => {
                 style={styles.editButton}
                 disabled={isSubmitting}
               >
-                <Settings size={16} color="#1F2937" />
+                <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/9654/9654127.png' }} 
+                        style={styles.iconEdit} />
                 <Text style={styles.editText}>Editar</Text>
               </TouchableOpacity>
             )}
@@ -239,28 +240,45 @@ const Profile: React.FC = () => {
               </View>
             </View>
           ) : (
-            <View style={styles.infoGrid}>
+            
+            <View style={styles.infoGrid}> 
               <View style={styles.infoItem}>
+                <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/6814/6814083.png' }} 
+                        style={styles.icon} />
                 <Text style={styles.infoLabel}>Edad</Text>
                 <Text style={styles.infoValue}>{user.age} años</Text>
               </View>
               <View style={styles.infoItem}>
+                <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/13581/13581540.png' }} 
+                        style={styles.icon} />
                 <Text style={styles.infoLabel}>Altura</Text>
                 <Text style={styles.infoValue}>{user.height} cm</Text>
               </View>
+              
               <View style={styles.infoItem}>
+                <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/847/847523.png' }} 
+                        style={styles.icon} />
                 <Text style={styles.infoLabel}>Peso actual</Text>
                 <Text style={styles.infoValue}>{user.weight} kg</Text>
               </View>
+              
               <View style={styles.infoItem}>
+                <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/4813/4813809.png' }} 
+                        style={styles.icon} />
                 <Text style={styles.infoLabel}>Objetivo de peso</Text>
                 <Text style={styles.infoValue}>{user.targetWeight} kg</Text>
               </View>
+              
               <View style={styles.infoItem}>
+                <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/10481/10481308.png' }} 
+                        style={styles.icon} />
                 <Text style={styles.infoLabel}>IMC</Text>
                 <Text style={styles.infoValue}>{bmi}</Text>
               </View>
+              
               <View style={styles.infoItem}>
+                <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/6774/6774897.png' }} 
+                        style={styles.icon} />
                 <Text style={styles.infoLabel}>Clasificación</Text>
                 <Text style={styles.infoValue}>{bmiCategory}</Text>
               </View>

@@ -76,6 +76,14 @@ const styles = StyleSheet.create({
     color: "#3b82f6",
     fontWeight: "bold",
   },
+  pickerContainer: {
+  borderWidth: 1,
+  borderColor: '#ccc',
+  borderRadius: 8,
+  marginVertical: 8,
+  overflow: 'hidden',
+}
+
   
 });
 

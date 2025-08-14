@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: { 
-    padding: 16,
+    padding: 20,
     paddingBottom: 32,
     paddingTop: 40,
     justifyContent: 'center',
@@ -31,9 +31,12 @@ const styles = StyleSheet.create({
   iconContainer: {
     alignItems: 'center',
     marginBottom: 24,
-    backgroundColor: '#A0DFF7',
     padding: 16,
     borderRadius: 50,
+    width: 50,
+    height: 50,
+    marginRight: 0,
+    flexDirection: 'row',
   },
 
 
@@ -84,21 +87,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
-    borderColor: '#D1D5DB',
+    borderColor: '#CCCCFF', 
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 10,
     backgroundColor: '#F9FAFB',
   },
   editText: { 
-    marginLeft: 6,
-    color: '#4B5563',
+    marginLeft: 10,
+    color: '#000000ff',
     fontSize: 14,
+    fontWeight: '500',
   },
   inputContainer: {
     marginBottom: 16,
   },
   inputLabel: { 
-    color: '#374151', 
+    color: '#000000ff', 
     marginBottom: 8,
     fontWeight: '500',
     fontSize: 14,
@@ -153,6 +157,7 @@ const styles = StyleSheet.create({
   saveText: { 
     color: '#FFFFFF', 
     fontWeight: '500',
+    
   },
   disabledButton: {
     opacity: 0.6,
@@ -161,17 +166,27 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   infoItem: {
-    marginBottom: 12,
+  marginBottom: 20,
+  marginRight: 0,
+  padding: 10,                  
+  borderRadius: 20,
+  flexDirection: 'row',         
+  alignItems: 'center',         
+  justifyContent: 'space-between', 
+  borderWidth: 2,
+  backgroundColor: '#CCFFFF',               
+  borderColor: '#CCCCFF'   
   },
   infoLabel: { 
-    color: '#6B7280', 
+    color: '#000000ff', 
     fontSize: 14,
   },
   infoValue: { 
     fontWeight: '500',
     fontSize: 16,
     color: '#1F2937',
-    marginTop: 4,
+    
+    marginTop: 0,
   },
   cardTitle: { 
     fontSize: 16, 
@@ -218,6 +233,23 @@ const styles = StyleSheet.create({
   loadingText: {
     marginTop: 10,
     color: '#FFFFFF',
+  },
+   icon: {
+    width: 29,
+    height: 29,
+    marginRight: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 0,
+    marginLeft: 30,
+  },
+  iconEdit: {
+    width: 25,
+    height: 25,
+    marginRight: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 0,
   },
 });
 

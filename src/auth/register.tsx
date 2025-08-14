@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Picker } from '@react-native-picker/picker';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { Activity } from 'lucide-react-native';
@@ -8,11 +9,20 @@ import { useAuth } from '../context/AuthContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from '../styles/AuthStyles';
 
+const diseaseOptions = [
+  'Ninguna',
+  'Diabetes',
+  'Hipertensión',
+  'Colesterol alto',
+  'Obesidad',
+  'Trastornos alimenticios'
+];
+
 const Register: React.FC = () => {
   const [step, setStep] = useState<number>(1);
   const navigation = useNavigation();
   const { register, error: authError, clearError } = useAuth();
-  
+
   const [fullName, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -21,6 +31,7 @@ const Register: React.FC = () => {
   const [weight, setWeight] = useState<string>('');
   const [height, setHeight] = useState<string>('');
   const [targetWeight, setTargetWeight] = useState<string>('');
+  const [diseases, setDiseases] = useState<string>('Ninguna');
   const [localError, setLocalError] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -85,7 +96,8 @@ const Register: React.FC = () => {
         ageNum,
         weightNum,
         heightNum,
-        targetWeightNum
+        targetWeightNum,
+        [diseases] // enviamos array con la enfermedad seleccionada
       );
 
       Alert.alert(
@@ -98,8 +110,23 @@ const Register: React.FC = () => {
           },
         ]
       );
-    } catch (error) {
-      console.error('Registration error:', error);
+    } catch (err: any) {
+      // Si la API devuelve sugerencia de nutriólogos
+      if (err.response?.status === 403 && err.response.data.recommendedNutriologists) {
+        const nutriList = err.response.data.recommendedNutriologists
+          .map((n: any) => `${n.name} - ${n.specialty} (${n.location})`)
+          .join('\n');
+
+        Alert.alert(
+          'Atención requerida',
+          `${err.response.data.message}\n\n${err.response.data.suggestion}\n\nNutriólogos recomendados:\n${nutriList}`,
+          [
+            { text: 'OK', onPress: () => navigation.navigate('Login') },
+          ]
+        );
+      } else {
+        setLocalError(err.response?.data?.message || 'Error en el registro');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -211,6 +238,18 @@ const Register: React.FC = () => {
                   keyboardType="numeric"
                   required
                 />
+
+                <Text style={styles.label}>Enfermedades</Text>
+                <View style={styles.pickerContainer}>
+                  <Picker
+                    selectedValue={diseases}
+                    onValueChange={(itemValue) => setDiseases(itemValue)}
+                  >
+                    {diseaseOptions.map((disease) => (
+                      <Picker.Item key={disease} label={disease} value={disease} />
+                    ))}
+                  </Picker>
+                </View>
               </>
             )}
           </ScrollView>

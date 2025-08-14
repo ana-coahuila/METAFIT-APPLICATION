@@ -168,8 +168,6 @@ mealName: {
   icon: {
     width: 29,
     height: 29,
-    marginRight: 0,
-    borderRadius: 50,
     
   },
 

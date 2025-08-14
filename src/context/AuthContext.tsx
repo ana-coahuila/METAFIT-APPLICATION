@@ -1,8 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import {User} from "../types/types";
-
+import { User } from "../types/types";
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
@@ -17,7 +16,8 @@ interface AuthContextType {
     age: number,
     weight: number,
     height: number,
-    targetWeight: number
+    targetWeight: number,
+    diseases: string[]
   ) => Promise<void>;
   logout: () => Promise<void>;
   loading: boolean;
@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Configurar headers de axios
   const setAuthToken = (token: string | null) => {
     if (token) {
       axios.defaults.headers.common['x-auth-token'] = token;
@@ -43,7 +42,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Cargar usuario al iniciar
   const loadUser = async () => {
     try {
       const storedToken = await AsyncStorage.getItem("token");
@@ -59,7 +57,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setUser(response.data);
     } catch (err: any) {
       if (err.response?.status === 401) {
-        // Token inválido o expirado
         await logout();
       } else {
         console.error("Error loading user:", err);
@@ -69,7 +66,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Registrar usuario
+  // Registrar usuario con enfermedades
   const register = async (
     fullName: string,
     email: string,
@@ -77,13 +74,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     age: number,
     weight: number,
     height: number,
-    targetWeight: number
+    targetWeight: number,
+    diseases: string[]
   ) => {
     try {
       setLoading(true);
       setError(null);
 
-      // Validación de peso objetivo como en tu API
       if (targetWeight < 30 || targetWeight > 300) {
         throw new Error('El peso objetivo debe estar entre 30 y 300 kg');
       }
@@ -95,13 +92,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         age,
         weight,
         height,
-        targetWeight
+        targetWeight,
+        diseases
       });
 
       await AsyncStorage.setItem("token", response.data.token);
       setAuthToken(response.data.token);
       setToken(response.data.token);
-      await loadUser(); // Cargar los datos del usuario después del registro
+      await loadUser();
     } catch (err: any) {
       setError(err.response?.data?.message || err.message || 'Error en el registro');
       throw err;
@@ -110,21 +108,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Login de usuario
   const login = async (email: string, password: string) => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await axios.post(`${apiUrl}/auth/login`, {
-        email,
-        password
-      });
+      const response = await axios.post(`${apiUrl}/auth/login`, { email, password });
 
       await AsyncStorage.setItem("token", response.data.token);
       setAuthToken(response.data.token);
       setToken(response.data.token);
-      await loadUser(); // Cargar los datos del usuario después del login
+      await loadUser();
     } catch (err: any) {
       setError(err.response?.data?.message || 'Credenciales inválidas');
       throw err;
@@ -133,7 +127,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Logout
   const logout = async () => {
     try {
       await AsyncStorage.removeItem("token");
@@ -145,13 +138,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Actualizar información del usuario
   const updateUser = async (userData: Partial<User>) => {
     try {
       setLoading(true);
       setError(null);
 
-      // Validaciones como en tu API
       if (userData.age && (userData.age < 18 || userData.age > 30)) {
         throw new Error('La edad debe estar entre 18 y 30 años');
       }
@@ -173,10 +164,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Limpiar errores
   const clearError = () => setError(null);
 
-  // Cargar usuario al montar el componente
   useEffect(() => {
     loadUser();
   }, []);
