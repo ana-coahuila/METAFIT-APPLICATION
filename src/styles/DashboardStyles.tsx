@@ -54,7 +54,7 @@ export default StyleSheet.create({
     borderRadius: 6,
   },
   button: {
-    backgroundColor: '#2563eb',
+    backgroundColor: '#259febff',
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,

@@ -205,12 +205,11 @@ const Progress: React.FC = () => {
       </View>
 
       <View style={styles.card}>
-        <Image
+        <View style={[styles.section, { marginTop: 24 }]}>
+          <Text style={styles.sectionTitle}>  <Image
           source={{ uri: 'https://cdn-icons-png.flaticon.com/128/18265/18265431.png' }}
           style={styles.icon}
-        />
-        <View style={[styles.section, { marginTop: 24 }]}>
-          <Text style={styles.sectionTitle}>Estadísticas</Text>
+        />     Estadísticas</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.mealCalories}>Peso inicial:</Text>

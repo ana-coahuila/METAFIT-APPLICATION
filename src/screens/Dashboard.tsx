@@ -77,7 +77,7 @@ const Dashboard: React.FC = () => {
           style={[styles.button, { marginTop: 10 }]}
           onPress={() => navigation.navigate('Plan' as never)}
         >
-          <Text style={styles.buttonText}>Generar plan</Text>
+          <Text style={styles.buttonText}>Ir a Generar plan</Text>
         </TouchableOpacity>
       </View>
 
@@ -93,7 +93,7 @@ const Dashboard: React.FC = () => {
             style={[styles.button, { marginTop: 10 }]}
           onPress={() => navigation.navigate('Progress' as never)}
         >
-          <Text style={styles.buttonText}>Registrar peso</Text>
+          <Text style={styles.buttonText}>Ir a Registrar peso</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

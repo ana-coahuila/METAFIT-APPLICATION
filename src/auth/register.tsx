@@ -10,11 +10,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import styles from '../styles/AuthStyles';
 
 const diseaseOptions = [
+  
   'Ninguna',
   'Diabetes',
   'Hipertensión',
   'Colesterol alto',
-  'Obesidad',
   'Trastornos alimenticios'
 ];
 
