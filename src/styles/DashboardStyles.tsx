@@ -15,8 +15,9 @@ export default StyleSheet.create({
   greeting: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#0c9baf',
+    color: '#259febff',
     fontFamily: ' fantasy',
+     marginBottom: 16,
   },
   card: {
     backgroundColor: '#fff',
@@ -114,14 +115,15 @@ export default StyleSheet.create({
     backgroundColor: '#A0DFF7',
     padding: 16,
     borderRadius: 50,
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
+    marginRight: 4,
   },
 
 header1: {
   flexDirection: 'row',        
   alignItems: 'center',        
   justifyContent: 'space-between', 
-  paddingHorizontal: 16,
+  paddingHorizontal: 10,
   marginTop: 20,
 },
 
@@ -129,6 +131,19 @@ header1: {
   grid: {
     flexDirection: 'column',
     gap: 16,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    gap: 10,
+    justifyContent: 'center',
+  },
+  icon: {
+    width: 55,
+    height: 50,
+    marginRight: 25,
+    
   },
 
   

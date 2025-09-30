@@ -48,7 +48,6 @@ const Progress: React.FC = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setWeightRecords(progressRes.data || []);
-
       } catch (err) {
         console.error('Error al cargar datos:', err);
         Alert.alert('Error', 'No se pudieron cargar los datos.');
@@ -100,7 +99,9 @@ const Progress: React.FC = () => {
     if (weightRecords.length === 0 || !user) return 0;
 
     const sorted = [...weightRecords].sort(
-      (a, b) => new Date(a.createdAt || a.date || '').getTime() - new Date(b.createdAt || b.date || '').getTime()
+      (a, b) =>
+        new Date(a.createdAt || a.date || '').getTime() -
+        new Date(b.createdAt || b.date || '').getTime()
     );
 
     const initial = sorted[0]?.weight;
@@ -134,13 +135,19 @@ const Progress: React.FC = () => {
   if (!user) return <Text style={styles.header}>No hay usuario autenticado.</Text>;
 
   const sortedRecords = [...weightRecords].sort(
-    (a, b) => new Date(a.createdAt || a.date || '').getTime() - new Date(b.createdAt || b.date || '').getTime()
+    (a, b) =>
+      new Date(a.createdAt || a.date || '').getTime() -
+      new Date(b.createdAt || b.date || '').getTime()
   );
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ padding: 4, paddingTop: 40 }}
+    >
       <Text style={styles.header}>Hola, {user.fullName.split(' ')[0]}</Text>
 
+      {/* Progreso */}
       <View style={styles.card}>
         <Text style={styles.title}>Progreso hacia tu meta</Text>
         <Text>Meta: {user.targetWeight} kg</Text>
@@ -151,10 +158,12 @@ const Progress: React.FC = () => {
         </View>
       </View>
 
+      {/* Botón para registrar peso */}
       <TouchableOpacity style={styles.button} onPress={() => setShowForm(!showForm)}>
         <Text style={styles.buttonText}>Registrar peso</Text>
       </TouchableOpacity>
 
+      {/* Formulario */}
       {showForm && (
         <View style={styles.form}>
           <TextInput
@@ -176,10 +185,18 @@ const Progress: React.FC = () => {
         </View>
       )}
 
+      {/* Registros */}
       <View style={styles.card}>
-        <Text style={styles.title}>Registros</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+          <Image
+            source={{ uri: 'https://cdn-icons-png.flaticon.com/128/753/753399.png' }}
+            style={styles.icon}
+          />
+          <Text style={[styles.title]}>Registros</Text>
+        </View>
+
         {sortedRecords.length === 0 ? (
-          <Text>No hay registros de peso</Text>
+          <Text>No hay registros de peso ingresa tu peso</Text>
         ) : (
           sortedRecords
             .slice()
@@ -189,7 +206,10 @@ const Progress: React.FC = () => {
               const diff = prev ? (record.weight - prev.weight).toFixed(1) : null;
               const isLoss = diff && parseFloat(diff) < 0;
               return (
-                <View key={(record.createdAt || record.date || '') + i} style={styles.recordRow}>
+                <View
+                  key={(record.createdAt || record.date || '') + i}
+                  style={styles.recordRow}
+                >
                   <Text>{formatDate(record.createdAt || record.date)}</Text>
                   <Text>{record.weight} kg</Text>
                   {diff && (
@@ -204,32 +224,55 @@ const Progress: React.FC = () => {
         )}
       </View>
 
+      {/* Estadísticas */}
       <View style={styles.card}>
         <View style={[styles.section, { marginTop: 24 }]}>
-          <Text style={styles.sectionTitle}>  <Image
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/128/18265/18265431.png' }}
-          style={styles.icon}
-        />     Estadísticas</Text>
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3703/3703300.png' }}
+              style={styles.icon}
+            />
+            <Text style={[styles.sectionTitle, { marginHorizontal: 8 }]}>Estadísticas</Text>
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/128/2821/2821733.png' }}
+              style={styles.icon}
+            />
+          </View>
         </View>
-        <View style={styles.row}>
-          <Text style={styles.mealCalories}>Peso inicial:</Text>
-          <Text style={styles.mealName}>{sortedRecords[0]?.weight ?? user.weight} kg</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.mealCalories}>Peso actual:</Text>
-          <Text style={styles.mealName}>{user.weight} kg</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.mealCalories}>Objetivo de peso:</Text>
-          <Text style={styles.mealName}>{user.targetWeight} kg</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.mealCalories}>IMC:</Text>
-          <Text style={styles.mealName}>{user.bmi.toFixed(1)}</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.mealCalories}>Categoría:</Text>
-          <Text style={styles.mealName}>{user.bmiCategory}</Text>
+
+        {/* Diseño de dos columnas para las estadísticas */}
+        <View style={styles.statsContainer}>
+          {/* Columna izquierda */}
+          <View style={styles.statsColumn}>
+            <View style={styles.statItem}>
+              <Text style={styles.statLabel}>Peso inicial:</Text>
+              <Text style={styles.statValue}>
+                {sortedRecords[0]?.weight ?? user.weight} kg
+              </Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statLabel}>Categoría:</Text>
+              <Text style={styles.statValue}>{user.bmiCategory}</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statLabel}>Peso actual:</Text>
+              <Text style={styles.statValue}>{user.weight} kg</Text>
+            </View>
+          </View>
+
+          {/* Columna derecha */}
+          <View style={styles.statsColumn}>
+            <View style={styles.statItem}>
+              <Text style={styles.statLabel}>Objetivo:</Text>
+              <Text style={styles.statValue}>{user.targetWeight} kg</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statLabel}>IMC:</Text>
+              <Text style={styles.statValue}>{user.bmi.toFixed(1)}</Text>
+            </View>
+          </View>
         </View>
       </View>
     </ScrollView>

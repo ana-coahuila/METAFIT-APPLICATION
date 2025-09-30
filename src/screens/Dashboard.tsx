@@ -49,21 +49,41 @@ const Dashboard: React.FC = () => {
   if (!user) return <Text style={{ textAlign: 'center', marginTop: 50 }}>No hay usuario autenticado</Text>;
 
   return (
-    <ScrollView contentContainerStyle={{ padding: 16 }}>
+    <ScrollView contentContainerStyle={{ padding: 16, paddingTop: 40 }}>
       {/* Header */}
       <View style={styles.header1}>
-        <Text style={styles.greeting}>Hola, {user.fullName.split(' ')[0]}</Text>
+        
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                  <Image
+                    source={{ uri: 'https://cdn-icons-png.flaticon.com/128/11893/11893500.png' }}
+                    style={styles.icon}
+                  />
+        <Text style={styles.greeting}>Hola, {user.fullName.split(' ')[0]} </Text>
       </View>
+        </View>
+      
 
       {/* Información Metafit */}
       <View style={styles.card}>
         <Text style={styles.title}>¿Qué es Metafit?</Text>
-        <Text style={{ color: '#4B5563', marginVertical: 8 }}>
+        <Text style={{ color: '#000000ff', marginVertical: 8 }}>
           Metafit es tu compañero digital en el camino hacia una vida más saludable. 
           Te ofrece planes diarios de comidas y ejercicios adaptados a ti.
         </Text>
         <Image
           source={{ uri: 'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg' }}
+          
+          style={{ width: '100%', height: 180, borderRadius: 12, marginTop: 12 }}
+          resizeMode="cover"
+        />
+        <Text style={{ color: '#000000ff', marginVertical: 8 }}>
+          Las metas para ganar peso saludablemente se centran en aumentar la 
+          ingesta calórica de manera nutritiva mediante comidas más frecuentes y 
+          alimentos ricos en nutrientes, y en incorporar ejercicio para construir 
+          masa muscular.
+        </Text>
+          <Image
+          source={{ uri: 'https://images.pexels.com/photos/4828104/pexels-photo-4828104.jpeg' }}
           style={{ width: '100%', height: 180, borderRadius: 12, marginTop: 12 }}
           resizeMode="cover"
         />
@@ -71,7 +91,16 @@ const Dashboard: React.FC = () => {
 
       {/* Plan de hoy */}
       <View style={styles.card}>
-        <Text style={styles.title}>Plan de hoy</Text>
+        <View style={styles.row}>
+                  <Image
+                    source={{ uri: 'https://cdn-icons-gif.flaticon.com/10306/10306567.gif' }} 
+                    style={styles.icon} 
+                  />
+        <Text style={styles.title}>Plan de hoy    </Text>
+         <Image
+                    source={{ uri: 'https://cdn-icons-png.flaticon.com/128/12639/12639936.png' }} 
+                    style={styles.icon} 
+                  /></View>
         <Text>No hay plan hoy</Text>
         <TouchableOpacity
           style={[styles.button, { marginTop: 10 }]}
@@ -83,16 +112,25 @@ const Dashboard: React.FC = () => {
 
       {/* Registro de peso */}
       <View style={styles.card}>
-        
+        <View style={styles.row}>
+                  <Image
+                    source={{ uri: 'https://cdn-icons-png.flaticon.com/128/6774/6774897.png' }} 
+                    style={styles.icon} 
+                  />
         <Text style={styles.title}>Registro de peso</Text>
+        <Image source={{ uri:'https://cdn-icons-gif.flaticon.com/19016/19016722.gif' }} 
+                    style={styles.icon} 
+                  /></View>
+        
          <View style={styles.row}>
-                  <Text >Peso actual:</Text>
-                  <Text style={styles.mealName}>{user.weight} kg</Text>
+                  <Text > Usted Actualmente pesa</Text>
+                  <Text style={styles.title}>  {user.weight} kg</Text>
                 </View>
         <TouchableOpacity
             style={[styles.button, { marginTop: 10 }]}
           onPress={() => navigation.navigate('Progress' as never)}
         >
+
           <Text style={styles.buttonText}>Ir a Registrar peso</Text>
         </TouchableOpacity>
       </View>

@@ -36,6 +36,7 @@ const Input: React.FC<InputProps> = ({
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
+        placeholderTextColor="#9CA3AF"
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
         autoCapitalize={autoCapitalize}
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     fontSize: 16,
     backgroundColor: '#fff',
+    color: '#111827',
   },
   inputError: {
     borderColor: '#EF4444',

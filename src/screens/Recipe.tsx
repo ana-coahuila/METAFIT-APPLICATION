@@ -151,8 +151,8 @@ const RecipeSearch = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.content}>
+   <View style={[styles.container, { marginTop: 20 }]}>
+    <ScrollView contentContainerStyle={[styles.content, { paddingBottom: 20,padding: 16, paddingTop: 40 }]}>
         <View style={styles.header}>
           <Search size={24} color="#7c3aed" />
           <Text style={styles.headerText}>Buscador de Recetas</Text>

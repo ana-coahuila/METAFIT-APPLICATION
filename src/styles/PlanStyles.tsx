@@ -15,6 +15,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 4,
+    fontFamily: ' fantasy',
   },
   date: {
     fontSize: 16,
@@ -266,15 +267,243 @@ export default StyleSheet.create({
     color: 'white',
     fontWeight: '500',
   },
-row: {
+  row: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
   },
   icon: {
-    width: 29,
-    height: 29,
+    width: 43,
+    height: 43,
     marginRight: 30,
   },
+
+  tabContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#F3F4F6',
+    margin: 16,
+    borderRadius: 12,
+    padding: 4,
+  },
+  tab: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    borderRadius: 8,
+  },
+  activeTab: {
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  tabText: {
+    marginLeft: 6,
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#6B7280',
+  },
+  activeTabText: {
+    color: '#10B981',
+  },
+
+  // Botón generar plan
+  generatePlanContainer: {
+    paddingHorizontal: 50,
+    marginBottom: 25,
+    marginTop: 19,
+  },
+  generatePlanButton: {
+    backgroundColor: '#259febff',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  generatePlanText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  // BMI Badge
+  bmiBadge: {
+    backgroundColor: '#EFF6FF',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#3B82F6',
+  },
+  bmiBadgeText: {
+    color: '#3B82F6',
+    fontSize: 12,
+    fontWeight: '600',
+  },
+
+  // Sección de día semanal
+  daySection: {
+    marginBottom: 20,
+  },
+  dayHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  dayTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#374151',
+  },
+  todayTitle: {
+    color: '#10B981',
+  },
+  todayBadge: {
+    backgroundColor: '#00ccffff',
+    paddingHorizontal: 100,
+    paddingVertical: 8,
+    borderRadius: 8,
+    
+  },
+  
+  todayBadgeText: {
+    color: 'white',
+    fontSize: 13,
+    fontWeight: '600',
+  },
+
+  // Día vacío
+  emptyDayCard: {
+    backgroundColor: 'white',
+    borderRadius: 12,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+    borderLeftWidth: 4,
+    borderLeftColor: '#E5E7EB',
+  },
+
+  // Header de sección mejorado
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+
+  // Estilos para el indicador de hoy
+  todayIndicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#10B981',
+    
+  },
+
+  // Estilos para tarjetas semanales (manteniendo consistencia)
+  weeklyMealCard: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    borderLeftWidth: 4,
+    marginBottom: 12,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  weeklyMealCardToday: {
+    borderLeftColor: '#10B981',
+    borderLeftWidth: 4,
+  },
+  weeklyMealHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  weeklyMealDay: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#374151',
+  },
+  weeklyMealDayToday: {
+    color: '#10B981',
+  },
+  weeklyMealContent: {
+    // Contenido de comidas
+  },
+  weeklyMealItem: {
+    marginBottom: 12,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F3F4F6',
+  },
+  weeklyMealItemLast: {
+    marginBottom: 0,
+    paddingBottom: 0,
+    borderBottomWidth: 0,
+  },
+  weeklyMealName: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#1F2937',
+    marginBottom: 6,
+  },
+  weeklyMealDetails: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  weeklyMealCalories: {
+    fontSize: 14,
+    color: '#6B7280',
+    fontWeight: '500',
+  },
+  weeklyMealCategory: {
+    fontSize: 12,
+    color: '#9CA3AF',
+    backgroundColor: '#F3F4F6',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 8,
+  },
+
+  // Botón de reintento
+  retry_Button: {
+    backgroundColor: '#3B82F6',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+  },
+  retry_ButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  // Subtítulo de sección
+  sectionSubtitle: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 16,
+  },
+
+
 
 });

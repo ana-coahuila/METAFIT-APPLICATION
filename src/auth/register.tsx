@@ -10,7 +10,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import styles from '../styles/AuthStyles';
 
 const diseaseOptions = [
-  
   'Ninguna',
   'Diabetes',
   'Hipertensión',
@@ -239,17 +238,17 @@ const Register: React.FC = () => {
                   required
                 />
 
-                <Text style={styles.label}>Enfermedades</Text>
-                <View style={styles.pickerContainer}>
-                  <Picker
-                    selectedValue={diseases}
-                    onValueChange={(itemValue) => setDiseases(itemValue)}
-                  >
-                    {diseaseOptions.map((disease) => (
-                      <Picker.Item key={disease} label={disease} value={disease} />
-                    ))}
-                  </Picker>
-                </View>
+                <Text>Enfermedades</Text>
+                          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={diseases}
+              onValueChange={(itemValue) => setDiseases(itemValue)}
+            >
+              {diseaseOptions.map((disease) => (
+                <Picker.Item key={disease} label={disease} value={disease} />
+              ))}
+            </Picker>
+          </View>
               </>
             )}
           </ScrollView>

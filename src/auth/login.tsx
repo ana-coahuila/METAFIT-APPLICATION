@@ -37,8 +37,9 @@ const Login = () => {
       await login(email, password);
       
       Alert.alert(
-        "Inicio de sesión exitoso", 
-        "¡Bienvenido de nuevo!",
+        "Inicio de sesión exitoso",
+
+        "METAFIT TU CAMINO INTELIGENTE HACIA UNA VIDA MÁS SALUDABLE.",
         [{
           text: "OK",
           onPress: () => navigation.reset({
@@ -71,7 +72,7 @@ const Login = () => {
       <View style={styles.card}>
         <View style={styles.iconContainer}>
           <View style={styles.iconBackground}>
-            <Activity size={40} color="#FFFFFF" />
+            <Activity size={40} color="#394e55ff" />
           </View>
         </View>
 

@@ -16,7 +16,7 @@ export default StyleSheet.create({
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1f2937',
+    color: '#259febff',
     marginLeft: 8,
   },
   searchSection: {

@@ -10,7 +10,7 @@ export default StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#136a6dad',
+    color: '#259febff',
   },
   greeting: {
     fontSize: 26,
@@ -32,8 +32,10 @@ export default StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '600',
-    marginBottom: 8,
+    marginBottom: 9,
     color: '#0d0d0dff',
+    marginLeft: 8,
+    alignItems: 'center',
   },
   percent: {
     fontSize: 22,
@@ -131,7 +133,7 @@ header1: {
 
    section: {
     marginBottom: 24,
-    backgroundColor: 'white',
+    backgroundColor: '#e5a0ebff',
     borderRadius: 12,
     padding: 16,
     shadowColor: '#000',
@@ -141,10 +143,13 @@ header1: {
     elevation: 2,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: '600',
     marginBottom: 16,
     color: '#111827',
+    marginRight: 25,
+    marginLeft: 10,
+    
   },
 
 row: {
@@ -166,9 +171,37 @@ mealName: {
 },
 
   icon: {
-    width: 29,
-    height: 29,
+    width: 53, 
+    height: 53,
+    padding: 4,
+    marginRight: 25,
     
+    
+  },
+
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 16,
+
+
+  },
+  statsColumn: {
+    flex: 1,
+  },
+  statItem: {
+    marginBottom: 12,
+    paddingHorizontal: 8,
+  },
+  statLabel: {
+    fontSize: 14,
+    color: '#6B7280', // Usando el mismo color que mealCalories
+    marginBottom: 4,
+  },
+  statValue: {
+    fontSize: 16,
+    fontWeight: '500', // Usando el mismo peso que mealName
+    color: '#111827', // Usando el mismo color que mealName
   },
 
 });

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
     padding: 24,
-    backgroundImage:'',
+   
   },
   iconContainer: {
     alignItems: 'center',
@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#044cfa',
+    color: '#259febff',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#64748b',
+    color: '#000000ff',
     marginBottom: 32,
   },
   errorContainer: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footerText: {
-    color: '#64748b',
+    color: '#010409ff',
   },
   linkText: {
     color: '#3b82f6',
@@ -78,13 +78,14 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
   borderWidth: 1,
-  borderColor: '#ccc',
-  borderRadius: 8,
-  marginVertical: 8,
+  borderColor: '#D1D5DB',
+  borderRadius: 6,
+  marginBottom: 16,
+  backgroundColor: '#6dbabcff', // Fondo blanco sólido
   overflow: 'hidden',
-}
-
   
+ 
+},
 });
 
 export default styles;
