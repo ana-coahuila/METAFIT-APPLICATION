@@ -181,7 +181,7 @@ const Plan = () => {
       setExercises(exercisesResponse.data.exercises || []);
     } catch (err) {
       console.error('Error al obtener datos:', err);
-      setError('No se pudieron cargar los datos. Por favor intenta nuevamente o ingresar el peso inicial en el apartado de progreso.');
+      setError('No se pudieron cargar los datos. Por favor intenta nuevamente o ingresa el peso inicial en el apartado de progreso.');
       
       
     } finally {

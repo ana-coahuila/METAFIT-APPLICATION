@@ -133,7 +133,7 @@ const Profile: React.FC = () => {
         
         <View style={styles.header}>
           <Text style={styles.title}>Tu Perfil</Text>
-            <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/12266/12266251.png' }} 
+            <Image source={{ uri: 'https://i.postimg.cc/hvf2S2Hb/Logo.jpg' }} 
                         style={styles.iconContainer} />
           </View>
         

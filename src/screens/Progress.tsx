@@ -196,7 +196,7 @@ const Progress: React.FC = () => {
         </View>
 
         {sortedRecords.length === 0 ? (
-          <Text>No hay registros de peso ingresa tu peso</Text>
+          <Text>No hay registros de peso ingresa tu peso inicial </Text>
         ) : (
           sortedRecords
             .slice()

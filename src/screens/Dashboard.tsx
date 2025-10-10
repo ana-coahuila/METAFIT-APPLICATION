@@ -71,9 +71,9 @@ const Dashboard: React.FC = () => {
           Te ofrece planes diarios de comidas y ejercicios adaptados a ti.
         </Text>
         <Image
-          source={{ uri: 'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg' }}
+          source={{ uri: 'https://i.postimg.cc/hvf2S2Hb/Logo.jpg' }}
           
-          style={{ width: '100%', height: 180, borderRadius: 12, marginTop: 12 }}
+          style={{ width: '100%', height: 300, borderRadius: 12, marginTop: 12 }}
           resizeMode="cover"
         />
         <Text style={{ color: '#000000ff', marginVertical: 8 }}>
