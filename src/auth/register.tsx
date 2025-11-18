@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Pressable, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
 import Input from '../components/Input';
@@ -96,7 +96,7 @@ const Register: React.FC = () => {
         weightNum,
         heightNum,
         targetWeightNum,
-        [diseases] // enviamos array con la enfermedad seleccionada
+        [diseases] 
       );
 
       Alert.alert(
@@ -143,8 +143,10 @@ const Register: React.FC = () => {
       <View style={styles.card}>
         <View>
           <View style={styles.iconContainer}>
-            <View style={styles.iconBackground}>
-              <Activity size={40} color="#1f2937" />
+            <View >
+              <Image
+              source={{ uri: 'https://i.postimg.cc/HLgtBPdV/splash-icon.png' }} 
+              style={styles.iconBackground}/>
             </View>
           </View>
 

@@ -37,8 +37,7 @@ export default StyleSheet.create({
     color: '#111827',
   },
   percent: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 14,
     marginTop: 4,
     color: '#000000',
   },
@@ -126,8 +125,6 @@ header1: {
   paddingHorizontal: 10,
   marginTop: 20,
 },
-
-
   grid: {
     flexDirection: 'column',
     gap: 16,
@@ -145,7 +142,6 @@ header1: {
     marginRight: 25,
     
   },
-
   
 });
 

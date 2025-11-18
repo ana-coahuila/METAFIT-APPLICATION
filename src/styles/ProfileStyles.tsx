@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
     padding: 16,
-    borderRadius: 15,
+    borderRadius: 20,
     width: 70,
     height: 70,
-    marginRight: 0,
+    marginLeft: 20,
     flexDirection: 'row',
   },
 

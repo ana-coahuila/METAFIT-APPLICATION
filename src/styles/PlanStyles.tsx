@@ -273,8 +273,8 @@ export default StyleSheet.create({
     marginBottom: 8,
   },
   icon: {
-    width: 43,
-    height: 43,
+    width: 58,
+    height: 58,
     marginRight: 30,
   },
 
@@ -284,6 +284,7 @@ export default StyleSheet.create({
     margin: 16,
     borderRadius: 12,
     padding: 4,
+     marginBottom: 30,
   },
   tab: {
     flex: 1,
@@ -503,6 +504,257 @@ export default StyleSheet.create({
     color: '#6B7280',
     marginBottom: 16,
   },
+
+
+
+// Estilos para el sistema de eventos
+actionButtonsContainer: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginBottom: 28,
+  gap: 10,
+},
+
+generate_PlanButton: {
+  flex: 1,
+  backgroundColor: '#3B82F6',
+  paddingVertical: 12,
+  paddingHorizontal: 16,
+  borderRadius: 12,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+eventButton: {
+  flex: 1,
+  backgroundColor: '#EF4444',
+  paddingVertical: 12,
+  paddingHorizontal: 16,
+  borderRadius: 12,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 8,
+},
+
+generatePText: {
+  color: '#FFFFFF',
+  fontSize: 14,
+  fontWeight: '600',
+},
+
+eventButtonText: {
+  color: '#FFFFFF',
+  fontSize: 14,
+  fontWeight: '600',
+},
+
+// Modal styles
+modalOverlay: {
+  flex: 1,
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: 20,
+},
+
+modalContent: {
+  backgroundColor: '#FFFFFF',
+  borderRadius: 20,
+  padding: 24,
+  width: '100%',
+  maxHeight: '80%',
+},
+
+modalHeader: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: 16,
+},
+
+modalTitle: {
+  fontSize: 20,
+  fontWeight: 'bold',
+  color: '#1F2937',
+},
+
+closeButton: {
+  padding: 4,
+},
+
+modalSubtitle: {
+  fontSize: 14,
+  color: '#6B7280',
+  marginBottom: 24,
+  textAlign: 'center',
+},
+
+inputLabel: {
+  fontSize: 16,
+  fontWeight: '600',
+  color: '#374151',
+  marginBottom: 12,
+},
+
+// Event options
+eventsContainer: {
+  marginBottom: 24,
+},
+
+eventOption: {
+  backgroundColor: '#F3F4F6',
+  padding: 16,
+  borderRadius: 12,
+  marginRight: 12,
+  minWidth: 140,
+  borderWidth: 2,
+  borderColor: 'transparent',
+},
+
+eventOptionSelected: {
+  backgroundColor: '#DBEAFE',
+  borderColor: '#3B82F6',
+},
+
+eventOptionText: {
+  fontSize: 16,
+  fontWeight: '600',
+  color: '#374151',
+  marginBottom: 4,
+},
+
+eventOptionTextSelected: {
+  color: '#1E40AF',
+},
+
+eventDescription: {
+  fontSize: 12,
+  color: '#6B7280',
+},
+
+// Day options
+daysContainer: {
+  marginBottom: 24,
+},
+
+dayOption: {
+  backgroundColor: '#F3F4F6',
+  padding: 12,
+  borderRadius: 8,
+  marginRight: 8,
+  borderWidth: 2,
+  borderColor: 'transparent',
+},
+
+dayOptionSelected: {
+  backgroundColor: '#D1FAE5',
+  borderColor: '#10B981',
+},
+
+dayOptionText: {
+  fontSize: 14,
+  fontWeight: '600',
+  color: '#374151',
+},
+
+dayOptionTextSelected: {
+  color: '#065F46',
+},
+
+// Modal actions
+modalActions: {
+  marginTop: 8,
+},
+
+submitButton: {
+  backgroundColor: '#10B981',
+  paddingVertical: 16,
+  borderRadius: 12,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+submitButtonDisabled: {
+  backgroundColor: '#9CA3AF',
+},
+
+submitButtonText: {
+  color: '#FFFFFF',
+  fontSize: 16,
+  fontWeight: '600',
+},
+
+// Adaptation message
+adaptationMessage: {
+  backgroundColor: '#D1FAE5',
+  borderLeftWidth: 4,
+  borderLeftColor: '#10B981',
+  padding: 16,
+  marginHorizontal: 20,
+  marginTop: 10,
+  borderRadius: 8,
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: 12,
+},
+
+adaptationMessageText: {
+  color: '#065F46',
+  fontSize: 14,
+  fontWeight: '500',
+  flex: 1,
+},
+
+// Adjusted badge styles
+dayTitleContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: 8,
+},
+
+adjustedBadge: {
+  backgroundColor: '#FEF3C7',
+  paddingHorizontal: 8,
+  paddingVertical: 4,
+  borderRadius: 6,
+  borderWidth: 1,
+  borderColor: '#F59E0B',
+},
+
+adjustedBadgeText: {
+  fontSize: 10,
+  color: '#92400E',
+  fontWeight: '600',
+},
+
+
+errorButtons: {
+  flexDirection: 'row',
+  gap: 12,
+  marginTop: 10,
+},
+
+generateButton: {
+  backgroundColor: '#10B981',
+  paddingHorizontal: 20,
+  paddingVertical: 12,
+  borderRadius: 8,
+  minWidth: 120,
+  alignItems: 'center',
+},
+generateButtonText: {
+  color: '#FFFFFF',
+  fontSize: 14,
+  fontWeight: '600',
+},
+
+
+
+
+
+
+
 
 
 

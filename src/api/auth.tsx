@@ -1,7 +1,9 @@
-// api/auth.tsx corregido
+// api/auth.tsx
 import axios from "axios";
+import Constants from "expo-constants";
 
-const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+const apiUrl = Constants.expoConfig?.extra?.API_URL;
+console.log("✅ API URL usada:", apiUrl);
 
 interface UserResponse {
   user?: {
@@ -21,13 +23,13 @@ interface UserResponse {
 
 export const loginUser = async (email: string, password: string): Promise<UserResponse> => {
   try {
-    const response = await axios.post(`${apiUrl}/auth/login`, { 
-      email, 
-      password 
+    const response = await axios.post(`${apiUrl}/auth/login`, {
+      email,
+      password
     });
     return response.data;
   } catch (error) {
-    console.error('Login error:', error);
+    console.error("Login error:", error);
     throw error;
   }
 };
@@ -55,7 +57,7 @@ export const registerUser = async (
     });
     return response.data;
   } catch (error) {
-    console.error('Registration error:', error);
+    console.error("Registration error:", error);
     throw error;
   }
 };
@@ -69,7 +71,7 @@ export const getUserProfile = async (token: string): Promise<UserResponse> => {
     });
     return response.data;
   } catch (error) {
-    console.error('Get profile error:', error);
+    console.error("Get profile error:", error);
     throw error;
   }
 };
@@ -92,7 +94,7 @@ export const updateUserProfile = async (
     });
     return response.data;
   } catch (error) {
-    console.error('Update profile error:', error);
+    console.error("Update profile error:", error);
     throw error;
   }
 };

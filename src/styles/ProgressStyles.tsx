@@ -41,7 +41,7 @@ export default StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginTop: 4,
-    color: '#ce1a1aff',
+    color: '#299ed0ff',
   },
   barBackground: {
     height: 12,
@@ -52,7 +52,7 @@ export default StyleSheet.create({
   },
   barFill: {
     height: '100%',
-    backgroundColor: '#10b981',
+    backgroundColor: '#56b910ff',
     borderRadius: 6,
   },
   button: {
@@ -109,14 +109,10 @@ export default StyleSheet.create({
     borderBottomColor: '#e5e7eb',
   },
     iconContainer: {
-    width: 53, 
+     width: 53, 
     height: 53,
-    alignItems: 'center',
-    marginBottom: 24,
-    backgroundColor: '#A0DFF7',
-    padding: 16,
-    borderRadius: 50,
-    alignSelf: 'flex-end'
+    padding: 4,
+    marginRight: 25,
   },
 
 header1: {
@@ -171,8 +167,8 @@ mealName: {
 },
 
   icon: {
-    width: 53, 
-    height: 53,
+    width: 59, 
+    height: 59,
     padding: 4,
     marginRight: 25,
     
@@ -194,15 +190,23 @@ mealName: {
     paddingHorizontal: 8,
   },
   statLabel: {
-    fontSize: 14,
-    color: '#6B7280', // Usando el mismo color que mealCalories
+    fontSize: 16,
+    color: '#6c646bff', // Usando el mismo color que mealCalories
     marginBottom: 4,
+    fontWeight: '600',
   },
   statValue: {
     fontSize: 16,
     fontWeight: '500', // Usando el mismo peso que mealName
-    color: '#111827', // Usando el mismo color que mealName
+    color: '#000000ff', // Usando el mismo color que mealName
   },
+  statsRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  paddingHorizontal: 15,
+  marginBottom: 4,
+},
+
 
 });
 

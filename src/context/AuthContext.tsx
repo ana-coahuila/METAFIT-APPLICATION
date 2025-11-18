@@ -2,8 +2,10 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { User } from "../types/types";
+import Constants from "expo-constants";
 
-const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+const apiUrl = Constants.expoConfig?.extra?.API_URL;
+console.log("✅ API URL usando:", apiUrl);
 
 interface AuthContextType {
   user: User | null;

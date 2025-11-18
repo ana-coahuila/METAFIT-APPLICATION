@@ -3,6 +3,11 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert, Image } fro
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../styles/ProgressStyles';
 import axios from 'axios';
+import Constants from "expo-constants";
+
+// Reemplazamos la URL de la API para producción
+const apiUrl = Constants.expoConfig?.extra?.API_URL;
+console.log("✅ API URL usada en Progress:", apiUrl);
 
 type WeightRecord = {
   _id?: string;
@@ -28,7 +33,7 @@ const Progress: React.FC = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+
 
   // Cargar datos del usuario y progreso
   useEffect(() => {
@@ -149,9 +154,22 @@ const Progress: React.FC = () => {
 
       {/* Progreso */}
       <View style={styles.card}>
-        <Text style={styles.title}>Progreso hacia tu meta</Text>
-        <Text>Meta: {user.targetWeight} kg</Text>
-        <Text>Peso Actual: {user.weight} kg</Text>
+        
+        <Text style={styles.title}> 
+          <Image source={{ uri: 'https://i.postimg.cc/vBYdYqv8/grafica.png' }} 
+                        style={styles.icon} />    PROGRESO HACIA TU META </Text>
+                        
+       <View style={styles.statsRow}>
+  <View style={styles.statsColumn}>
+    <Text style={styles.statLabel}>Meta: {user.targetWeight} kg</Text>
+  </View>
+  <View style={styles.statsColumn}>
+    <Text style={[styles.statLabel, { textAlign: 'right' }]}>
+      Peso Actual: {user.weight} kg
+    </Text>
+  </View>
+</View>
+
         <Text style={styles.percent}>{calculateProgress().toFixed(1)}%</Text>
         <View style={styles.barBackground}>
           <View style={[styles.barFill, { width: `${calculateProgress()}%` }]} />
@@ -189,7 +207,7 @@ const Progress: React.FC = () => {
       <View style={styles.card}>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <Image
-            source={{ uri: 'https://cdn-icons-png.flaticon.com/128/753/753399.png' }}
+            source={{ uri: 'https://i.postimg.cc/q7rQhgZj/weighlog.png' }}
             style={styles.icon}
           />
           <Text style={[styles.title]}>Registros</Text>

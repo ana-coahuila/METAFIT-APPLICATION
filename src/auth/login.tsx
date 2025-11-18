@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, Alert,Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { Activity } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from '../styles/AuthStyles';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext'; 
 
 const Login = () => {
   const navigation = useNavigation();
@@ -71,8 +71,10 @@ const Login = () => {
       
       <View style={styles.card}>
         <View style={styles.iconContainer}>
-          <View style={styles.iconBackground}>
-            <Activity size={40} color="#394e55ff" />
+          <View >
+           <Image
+              source={{ uri: 'https://i.postimg.cc/HLgtBPdV/splash-icon.png' }} 
+              style={styles.iconBackground}/>
           </View>
         </View>
 

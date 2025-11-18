@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   iconBackground: {
-    backgroundColor: '#A0DFF7',
-    padding: 16,
-    borderRadius: 50,
+    width: 85,
+    height: 80,
+  
+  
   },
   title: {
     fontSize: 24,

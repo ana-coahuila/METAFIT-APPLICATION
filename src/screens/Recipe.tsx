@@ -4,8 +4,12 @@ import { Search, Filter, Clock, Zap, ChefHat, Mic, MicOff } from 'lucide-react-n
 import styles from '../styles/RecipeStyles';
 import axios from 'axios';
 import { Recipe } from '../types/types';
+import Constants from "expo-constants";
 
-const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+// Reemplazamos la URL de la API para producción
+const apiUrl = Constants.expoConfig?.extra?.API_URL;
+console.log("✅ API URL usada en Recipe:", apiUrl);
+
 
 const RecipeSearch = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
