@@ -1,4 +1,4 @@
-package com.anonymous.METAFIT
+package com.anonymous.metafit
 
 import android.os.Build
 import android.os.Bundle

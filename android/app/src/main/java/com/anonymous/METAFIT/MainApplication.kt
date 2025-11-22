@@ -1,4 +1,4 @@
-package com.anonymous.METAFIT
+package com.anonymous.metafit
 
 import android.app.Application
 import android.content.res.Configuration

@@ -333,13 +333,6 @@ const Plan = () => {
       setExercises(exercisesResponse.data.exercises || []);
       console.log('🌐 Datos cargados desde el servidor');
       
-    } catch (err: any) {
-      console.error('❌ Error al obtener datos del servidor:', err);
-      if (err.response?.status === 404) {
-        setError('No tienes un plan generado. Por favor, genera un plan primero.');
-      } else {
-        setError('No se pudieron cargar los datos. Verifica tu conexión.');
-      }
     } finally {
       setLoading(false);
     }
@@ -390,7 +383,7 @@ const Plan = () => {
       });
 
       // CORRECCIÓN: Llamar directamente al endpoint de Flask
-      const response = await axios.post('http://192.168.1.95:8000/adapt', {
+      const response = await axios.post('https://ia-metafit-production.up.railway.app/adapt', {
         userId: userId,
         eventType: eventType,
         day: day,
